@@ -3,6 +3,8 @@ import { useState } from "react";
 function Main() {
   // State for the challenge #3
   const [open, setOpen] = useState(false);
+  const [forms, setForms] = useState<Form[]>([]);
+
   const [bestFeatures, setBestFeatures] = useState<bestFeatures[]>([]);
   const [worstFeatures, setWorstFeatures] = useState<worstFeatures[]>([]);
   const [timeSpent, setTimeSpent] = useState<timeSpent[]>([]);
@@ -59,6 +61,19 @@ function Main() {
             console.log(Number(event.target.colour.value));
 
             console.log(Number(event.target.logo.value));
+
+            let Form = {
+              review: event.target.review.value,
+              email: event.target.email.value,
+              username: event.target.name.value,
+              consistency: event.target.consistency.value,
+              colour: event.target.colour.value,
+              logo: event.target.logo.value,
+              bestFeatures: bestFeatures,
+              worstFeatures: worstFeatures,
+              timeSpent: timeSpent,
+            };
+            setForms([...forms, Form]);
           }}
         >
           <h2>Tell us what you think about your rubber duck!</h2>
@@ -230,13 +245,13 @@ function Main() {
           </ul>
 
           <h4>What else have you got to say about your rubber duck?</h4>
-          <textarea name="message" id="message" cols="30" rows="10"></textarea>
+          <textarea name="review" id="message" cols="30" rows="10"></textarea>
 
           <h4>Put your name here (if you feel it):</h4>
-          <input type="text" />
+          <input type="text" name="name" />
 
           <h4>Leave us your email pretty please?? </h4>
-          <input type="email" />
+          <input type="email" name="email" />
 
           <button className="form__submit">Submit survey!</button>
         </form>
